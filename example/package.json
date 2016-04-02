@@ -5,6 +5,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "zalgolize": "^1.2.4",
-    "robbot": "^0.0.1"
+    "robbot": "^1.0.0"
   }
 }
