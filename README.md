@@ -1,5 +1,7 @@
 ![Robin](https://i.imgur.com/BSrC5M8.png)
-# Robbot
+
+[![NPM](https://nodei.co/npm/robbot.png)](https://npmjs.org/package/robbot)
+
 Robbot is an API for reddit's April Fools chat, "Robin."
 
 ## Example
