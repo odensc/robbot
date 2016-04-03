@@ -64,7 +64,7 @@ export default class Bot extends EventEmitter
 			{
 				let cmd = data.payload.body.split(" ");
 				// command name without ! (e.g dice), command params, user
-				this.commands.emit(cmd.shift().replace("!", ""), cmd, data.payload.user);
+				this.commands.emit(cmd.shift().replace("!", ""), cmd, data.payload.from);
 			}
 			// else just pass it on to listeners
 			else this.emit(data.type, data.payload);
