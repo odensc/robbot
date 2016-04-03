@@ -1,7 +1,7 @@
 import Robbot from "robbot";
 
 // Create a bot instance with a reddit account
-// Must already be in a Robin room or bad stuff will happen
+// If the account is not in a Robin room it will join one
 let bot = new Robbot("username", "password");
 
 // Register a command "test"
