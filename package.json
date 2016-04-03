@@ -1,6 +1,6 @@
 {
   "name": "robbot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Robin bot API.",
   "main": "comp/index.js",
   "scripts": {

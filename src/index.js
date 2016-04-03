@@ -7,7 +7,7 @@ import log from "./log";
 export default class Bot extends EventEmitter
 {
 	commands = new EventEmitter();
-	
+
 	constructor(username, password)
 	{
 		super();
@@ -44,7 +44,7 @@ export default class Bot extends EventEmitter
 		});
 		// extract the json from setup. includes ws url, etc.
 		// need to re-add brackets because regex removes them
-		let setup = `{${/r\.setup\({(.*?)}\)/.exec(data)[1]}}`;		
+		let setup = `{${/r\.setup\({(.*?)}\)/.exec(data)[1]}}`;
 		this.setup = JSON.parse(setup);
 	}
 
@@ -63,8 +63,8 @@ export default class Bot extends EventEmitter
 				&& data.payload.body.startsWith("!"))
 			{
 				let cmd = data.payload.body.split(" ");
-				// command name without ! (e.g dice), command params
-				this.commands.emit(cmd.shift().replace("!", ""), cmd);
+				// command name without ! (e.g dice), command params, user
+				this.commands.emit(cmd.shift().replace("!", ""), cmd, data.payload.user);
 			}
 			// else just pass it on to listeners
 			else this.emit(data.type, data.payload);
@@ -86,6 +86,28 @@ export default class Bot extends EventEmitter
 			uri: `https://www.reddit.com/api/robin/${this.setup.robin_room_id}/message`,
 			form: {
 				message: message,
+				room_id: this.setup.robin_room_id,
+				api_type: "json"
+			},
+			headers: {
+				cookie: `reddit_session=${this.session}`,
+				"x-modhash": this.modhash
+			}
+		});
+	}
+
+	sendMe(message)
+	{
+		return send(`/me ${message}`);
+	}
+
+	vote(type)
+	{
+		return rp({
+			method: "POST",
+			uri: `https://www.reddit.com/api/robin/${this.setup.robin_room_id}/vote`,
+			form: {
+				vote: type,
 				room_id: this.setup.robin_room_id,
 				api_type: "json"
 			},

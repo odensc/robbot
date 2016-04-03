@@ -1,18 +1,18 @@
 import Robbot from "robbot";
-import zalgo from "zalgolize";
 
 // Create a bot instance with a reddit account
 // Must already be in a Robin room or bad stuff will happen
 let bot = new Robbot("username", "password");
 
-// Register a command "zalgo"
-// This makes it so when someone says "!zalgo" it will run this function
-bot.commands.on("zalgo", params => {
+// Register a command "test"
+// This makes it so when someone says "!test" it will run this function
+// e.g. !test Hello world
+bot.commands.on("test", params => {
 	// make sure they gave a message
 	if (params.length <= 0) return;
-	// send a message with the zalgoized message
+	// send their message back to them
 	// we rejoin the params so spaced messages work
-	bot.send(zalgo(params.join(" ")));
+	bot.send(params.join(" "));
 });
 
 // Say a message when someone joins or leaves
